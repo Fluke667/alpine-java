@@ -9,5 +9,5 @@ RUN tar --extract --file $JAVA_HOME/openjdk.tar.gz --directory "$JAVA_HOME" --st
 RUN ["jlink", "--compress=2", \  
      "--module-path", "/opt/jdk/jmods/", \
      "--add-modules", "java.base,java.logging,java.naming,java.xml,jdk.sctp,jdk.unsupported", \
-     "--no-header-files", "--no-man-pages", \
-     "--output", "/netty-runtime"]
+     #"--no-header-files", "--no-man-pages", \
+     "--output", "/javarun"]
