@@ -2,18 +2,18 @@ FROM fluke667/alpine-glibc:latest
 
 # Java Version
 ENV JAVA_VERSION_MAJOR 8
-ENV JAVA_VERSION_MINOR 212
-ENV JAVA_VERSION_BUILD 10
-ENV JAVA_URL_ELEMENT   59066701cf1a433da9770636fbc4c9aa
+ENV JAVA_VERSION_MINOR 221
+ENV JAVA_VERSION_BUILD 11
+ENV JAVA_URL_ELEMENT   230deb18db3e4014bb8e3e8324f81b43
 ENV JAVA_PACKAGE       server-jre
-ENV JAVA_SHA256_SUM    83362fba28841559668de3be79baf77d3782374aee9a7e1dde0c02c6775ef172
+ENV JAVA_SHA256_SUM    b3f4e835f98286ffcb7191cf4574d70526e108a9ee67c395c56c3ce0ff65e3b3
 
 # Download and unarchive Java
 RUN apk add --update curl tar gzip &&\
   mkdir -p /opt &&\
   curl -jkLH "Cookie: oraclelicense=accept-securebackup-cookie" -o java.tar.gz\
-    http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_URL_ELEMENT}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz &&\
-  #echo "$JAVA_SHA256_SUM  java.tar.gz" | sha256sum -c - &&\
+  http://download.oracle.com/otn/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_URL_ELEMENT}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz &&\
+  echo "$JAVA_SHA256_SUM  java.tar.gz" | sha256sum -c - &&\
   gunzip -c java.tar.gz | tar -xf - -C /opt && rm -f java.tar.gz &&\
   ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} /opt/jdk &&\
   rm -rf /opt/jdk/*src.zip \
