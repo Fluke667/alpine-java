@@ -1,5 +1,5 @@
 # AlpineLinux with a glibc-2.30-r0 and Oracle Java 8
-FROM alpine:3.10
+FROM alpine:3.10:latest
 
 # Java Version and other ENV
 ENV JAVA_VERSION_MAJOR=8 \
@@ -86,7 +86,7 @@ RUN set -ex && \
            /opt/jdk/jre/lib/oblique-fonts \
            /opt/jdk/jre/lib/plugin.jar \
            /tmp/* /var/cache/apk/* && \
-    ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts && \
-    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
+    ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts
+    #echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
 # EOF
