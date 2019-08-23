@@ -30,10 +30,10 @@ ENV JAVA_VERSION_MAJOR=8 \
     
 
 # do all in one step
-RUN apk add --update --no-cache libstdc++ curl ca-certificates bash java-cacerts && \
-    curl -sSL ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk -o /tmp && \
-    curl -sSL ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk -o /tmp && \
-    curl -sSL ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk -o /tmp && \
+RUN apk add --update --no-cache libstdc++ curl ca-certificates bash java-cacerts wget && \
+    wget -P /tmp ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
+    wget -P /tmp ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk && \
+    wget -P /tmp ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk && \
     apk add --allow-untrusted /tmp/*.apk && \
     rm -v /tmp/*.apk && \
     ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 de_DE.UTF-8 || true ) && \
