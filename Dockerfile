@@ -9,7 +9,7 @@ ENV JAVA_PACKAGE       server-jre
 ENV JAVA_SHA256_SUM    83362fba28841559668de3be79baf77d3782374aee9a7e1dde0c02c6775ef172
 
 # Download and unarchive Java
-RUN apk add --update curl &&\
+RUN apk add --update curl tar gzip &&\
   mkdir -p /opt &&\
   curl -jkLH "Cookie: oraclelicense=accept-securebackup-cookie" -o java.tar.gz\
     http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_URL_ELEMENT}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz &&\
@@ -36,7 +36,7 @@ RUN apk add --update curl &&\
          /opt/jdk/jre/lib/amd64/libgstreamer-lite.so \
          /opt/jdk/jre/lib/amd64/libjavafx*.so \
          /opt/jdk/jre/lib/amd64/libjfx*.so &&\
-  apk del curl &&\
+  apk del curl tar gzip &&\
   rm -rf /var/cache/apk/*
 
 # Set environment
