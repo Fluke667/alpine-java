@@ -11,22 +11,21 @@ ENV JAVA_VERSION_MAJOR=8 \
     PATH=${PATH}:/opt/jdk/bin \
     GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc/releases/download \
     GLIBC_VERSION=2.30-r0 \
-    LANG=de_DE.UTF-8 \
-    LC_ALL=de_DE.UTF-8 \
-    LANGUAGE=de_DE.UTF-8 \
-    LC_CTYPE=de_DE.UTF-8 \
-    LC_COLLATE=de_DE.UTF-8 \
-    LC_MESSAGES=de_DE.UTF-8 \
-    LC_NUMERIC=de_DE.UTF-8 \
-    LC_TIME=de_DE.UTF-8 \
-    LC_MONETARY=de_DE.UTF-8 \
-    LC_PAPER=de_DE.UTF-8 \
-    LC_IDENTIFICATION=de_DE.UTF-8 \
-    LC_NAME=de_DE.UTF-8 \
-    LC_ADDRESS=de_DE.UTF-8 \
-    LC_TELEPHONE=de_DE.UTF-8 \
-    LC_MEASUREMENT=de_DE.UTF-8 \
-    TZ=Europe/Berlin
+    LANG=UTF-8 \
+    LC_ALL=UTF-8 \
+    LANGUAGE=UTF-8 \
+    LC_CTYPE=UTF-8 \
+    LC_COLLATE=UTF-8 \
+    LC_MESSAGES=UTF-8 \
+    LC_NUMERIC=UTF-8 \
+    LC_TIME=UTF-8 \
+    LC_MONETARY=UTF-8 \
+    LC_PAPER=UTF-8 \
+    LC_IDENTIFICATION=UTF-8 \
+    LC_NAME=UTF-8 \
+    LC_ADDRESS=UTF-8 \
+    LC_TELEPHONE=UTF-8 \
+    LC_MEASUREMENT=UTF-8
     
 
 # do all in one step
@@ -39,7 +38,7 @@ RUN apk add --update --no-cache libstdc++ curl ca-certificates bash java-cacerts
     ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) && \
      echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
-    mkdir /opt && \
+    #mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
     http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/230deb18db3e4014bb8e3e8324f81b43/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
     JAVA_PACKAGE_SHA256=$(curl -sSL https://www.oracle.com/webfolder/s/digest/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}checksum.html | grep -E "${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64\.tar\.gz" | grep -Eo '(sha256: )[^<]+' | cut -d: -f2 | xargs) && \
