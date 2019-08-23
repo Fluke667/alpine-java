@@ -35,8 +35,8 @@ RUN apk add --update --no-cache libstdc++ curl ca-certificates bash java-cacerts
     wget -P /tmp ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk && \
     apk add --allow-untrusted /tmp/*.apk && \
     rm -v /tmp/*.apk && \
-    ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) && \
-     echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
+    ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 || true ) && \
+     echo "export LANG=UTF-8" > /etc/profile.d/locale.sh && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
     #mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
