@@ -1,4 +1,4 @@
-# AlpineLinux with a glibc-2.29-r0 and Oracle Java 8
+# AlpineLinux with a glibc-2.30-r0 and Oracle Java 8
 FROM alpine:3.10
 
 # Java Version and other ENV
