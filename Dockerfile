@@ -36,4 +36,6 @@ RUN apk add --update --no-cache libstdc++ curl ca-certificates bash java-cacerts
     wget -P /tmp ${GLIBC_REPO}/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk && \
     apk add --allow-untrusted /tmp/*.apk && \
     rm -v /tmp/*.apk && \
+    find / -name localedef
+    
    
