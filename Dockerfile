@@ -12,7 +12,23 @@ ENV JAVA_VERSION_MAJOR=8 \
     PATH=${PATH}:/opt/jdk/bin \
     GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc \
     GLIBC_VERSION=2.30-r0 \
-    LANG=C.UTF-8
+    LANG=de_DE.UTF-8 \
+    LC_ALL=de_DE.UTF-8 \
+    LANGUAGE=de_DE.UTF-8 \
+    LC_CTYPE=de_DE.UTF-8 \
+    LC_COLLATE=de_DE.UTF-8 \
+    LC_MESSAGES=de_DE.UTF-8 \
+    LC_NUMERIC=de_DE.UTF-8 \
+    LC_TIME=de_DE.UTF-8 \
+    LC_MONETARY=de_DE.UTF-8 \
+    LC_PAPER=de_DE.UTF-8 \
+    LC_IDENTIFICATION=de_DE.UTF-8 \
+    LC_NAME=de_DE.UTF-8 \
+    LC_ADDRESS=de_DE.UTF-8 \
+    LC_TELEPHONE=de_DE.UTF-8 \
+    LC_MEASUREMENT=de_DE.UTF-8 \
+    TZ=Europe/Berlin
+    
 
 # do all in one step
 RUN set -ex && \
@@ -23,7 +39,7 @@ RUN set -ex && \
     apk add --allow-untrusted /tmp/*.apk && \
     rm -v /tmp/*.apk && \
     ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) && \
-    echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
+    echo "export LANG=de_DE.UTF-8 > /etc/profile.d/locale.sh && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
     mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
